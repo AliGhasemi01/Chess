@@ -8,6 +8,7 @@ public enum Alliance {
         public int getDirection() {
             return -1;
         }
+
         @Override
         public boolean isWhite() {
             return true;
@@ -23,6 +24,7 @@ public enum Alliance {
         public int getDirection() {
             return 1;
         }
+
         @Override
         public boolean isWhite() {
             return false;

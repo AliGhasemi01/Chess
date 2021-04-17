@@ -1,12 +1,15 @@
-package com.company;
+package com;
 
 import com.chess.engine.board.Board;
 
-public class Main {
+public class JChess {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
+
         Board board = Board.createStandardBoard();
 
         System.out.println(board);
+
     }
+
 }
