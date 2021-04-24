@@ -3,11 +3,8 @@ package com.chess.engine.board;
 import com.chess.engine.pieces.Piece;
 import com.google.common.collect.ImmutableMap;
 
-import java.nio.channels.Pipe;
-import java.time.Period;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 public abstract class Tile {
 

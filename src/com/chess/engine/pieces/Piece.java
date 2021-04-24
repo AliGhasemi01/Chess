@@ -5,7 +5,6 @@ import com.chess.engine.board.Board;
 import com.chess.engine.board.Move;
 
 import java.util.Collection;
-import java.util.concurrent.TransferQueue;
 
 public abstract class Piece {
 
