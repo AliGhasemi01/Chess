@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class Rook extends Piece{
+public class Rook extends Piece {
 
     private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-8, -1, 1, 8};
 
     public Rook(Alliance pieceAlliance, int piecePosition) {
-        super(piecePosition, pieceAlliance);
+        super(PieceType.ROOK, piecePosition, pieceAlliance);
     }
 
     @Override
@@ -37,8 +37,7 @@ public class Rook extends Piece{
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
                     if (!candidateDestinationTile.isTileOccupied()) {
                         legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
-                    }
-                    else {
+                    } else {
                         final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
                         if (pieceAlliance != this.pieceAlliance) {
@@ -53,7 +52,12 @@ public class Rook extends Piece{
     }
 
     @Override
-    public String toString(){
+    public Rook movePiece(Move move) {
+        return new Rook(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
+    }
+
+    @Override
+    public String toString() {
         return PieceType.ROOK.toString();
     }
 

@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class Queen extends Piece{
+public class Queen extends Piece {
 
     private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-9, -8, -7, -1, 1, 7, 8, 9};
 
     public Queen(Alliance pieceAlliance, int piecePosition) {
-        super(piecePosition, pieceAlliance);
+        super(PieceType.QUEEN, piecePosition, pieceAlliance);
     }
 
     @Override
@@ -38,8 +38,7 @@ public class Queen extends Piece{
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
                     if (!candidateDestinationTile.isTileOccupied()) {
                         legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
-                    }
-                    else {
+                    } else {
                         final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
                         if (pieceAlliance != this.pieceAlliance) {
@@ -54,7 +53,12 @@ public class Queen extends Piece{
     }
 
     @Override
-    public String toString(){
+    public Queen movePiece(Move move) {
+        return new Queen(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
+    }
+
+    @Override
+    public String toString() {
         return PieceType.QUEEN.toString();
     }
 

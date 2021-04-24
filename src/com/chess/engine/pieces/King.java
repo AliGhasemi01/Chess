@@ -15,8 +15,8 @@ public class King extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = {-9, -8, -7, -1, 1, 7, 8, 9};
 
-    public King(Alliance pieceAlliance, int piecePosition) {
-        super(piecePosition, pieceAlliance);
+    public King(final Alliance pieceAlliance, final int piecePosition) {
+        super(PieceType.KING, piecePosition, pieceAlliance);
     }
 
     @Override
@@ -27,11 +27,11 @@ public class King extends Piece {
         for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATES) {
 
             final int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
-            if(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)){
+            if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
                 final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
 
-                if(isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) ||
-                        isEighthColumnExclusion(this.piecePosition, currentCandidateOffset)){
+                if (isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) ||
+                        isEighthColumnExclusion(this.piecePosition, currentCandidateOffset)) {
                     continue;
                 }
 
@@ -52,7 +52,12 @@ public class King extends Piece {
     }
 
     @Override
-    public String toString(){
+    public King movePiece(Move move) {
+        return new King(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
+    }
+
+    @Override
+    public String toString() {
         return PieceType.KING.toString();
     }
 

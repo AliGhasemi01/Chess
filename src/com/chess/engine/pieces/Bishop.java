@@ -17,7 +17,7 @@ public class Bishop extends Piece {
     private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-9, -7, 7, 9};
 
     public Bishop(Alliance pieceAlliance, int piecePosition) {
-        super(piecePosition, pieceAlliance);
+        super(PieceType.BISHOP, piecePosition, pieceAlliance);
     }
 
     @Override
@@ -38,8 +38,7 @@ public class Bishop extends Piece {
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
                     if (!candidateDestinationTile.isTileOccupied()) {
                         legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
-                    }
-                    else {
+                    } else {
                         final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
                         if (pieceAlliance != this.pieceAlliance) {
@@ -54,7 +53,12 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public String toString(){
+    public Bishop movePiece(Move move) {
+        return new Bishop(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
+    }
+
+    @Override
+    public String toString() {
         return PieceType.BISHOP.toString();
     }
 
